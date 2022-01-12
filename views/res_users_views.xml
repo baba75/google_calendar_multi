@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_users_form_ext" model="ir.ui.view">
+            <field name="name">res.users.form.ext</field>
+            <field name="model">res.users</field>
+            <field name="inherit_id" ref="google_calendar.view_users_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='google_calendar_cal_id']" position="after">
+                    <field name="google_calendar_extra_cal_id"/>
+                </xpath>
+            </field>
+    </record>
+</odoo>
