@@ -72,7 +72,7 @@ class GoogleCalendar(models.AbstractModel):
         }
         headers = {'Content-type': 'application/json', 'Accept': 'text/plain'}
 
-        url = "/calendar/v3/calendars/" % self.get_calendar_id()
+        url = "/calendar/v3/calendars/" % (self.get_calendar_id())
 
         try:
             status, content, ask_time = self.env['google.service']._do_request(url, params, headers, type='GET')
@@ -110,7 +110,7 @@ class GoogleCalendar(models.AbstractModel):
 
         headers = {'Content-type': 'application/json', 'Accept': 'text/plain'}
 
-        url = "/calendar/v3/calendars/%s/events" % self.get_calendar_id()
+        url = "/calendar/v3/calendars/%s/events" % (self.get_calendar_id())
         if nextPageToken:
             params['pageToken'] = nextPageToken
 
