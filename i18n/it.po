@@ -1,0 +1,59 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* google_calendar_multi
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0-20210601\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-01-13 16:53+0000\n"
+"PO-Revision-Date: 2022-01-13 17:55+0100\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.0.1\n"
+
+#. module: google_calendar_multi
+#: model:ir.model,name:google_calendar_multi.model_google_calendar
+msgid "Google Calendar"
+msgstr "Calendario di Google"
+
+#. module: google_calendar_multi
+#: model:ir.model.fields,help:google_calendar_multi.field_res_users__google_calendar_extra_cal_id
+msgid ""
+"Last Calendar ID who has been synchronized. If it is changed, we remove all "
+"links between GoogleID and Odoo Google Internal ID"
+msgstr ""
+"Ultimo ID calendario che è stato sincronizzato. Se viene modificato, "
+"verranno rimossi tutti i collegamenti tra GoogleID e l’ID Google interno di "
+"Odoo"
+
+#. module: google_calendar_multi
+#: model:ir.model.fields,field_description:google_calendar_multi.field_res_users__google_calendar_extra_cal_id
+msgid "Secondary Calendar ID"
+msgstr "ID calendario secondario"
+
+#. module: google_calendar_multi
+#: code:addons/google_calendar_multi/models/google_calendar.py:58
+#, python-format
+msgid ""
+"The event \"%s\", %s (ID: %s) cannot be synchronized because of the "
+"following error: %s"
+msgstr ""
+"Impossibile sincronizzare l'evento \"%s\", %s (ID: %s) a causa del seguente "
+"errore: %s"
+
+#. module: google_calendar_multi
+#: model:ir.model,name:google_calendar_multi.model_res_users
+msgid "Users"
+msgstr "Utenti"
+
+#. module: google_calendar_multi
+#: code:addons/google_calendar_multi/models/google_calendar.py:92
+#, python-format
+msgid "Your token is invalid or has been revoked !"
+msgstr "Il tuo token non è valido o è stato revocato!"
