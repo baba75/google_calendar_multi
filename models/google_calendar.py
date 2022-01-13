@@ -159,6 +159,23 @@ class GoogleCalendar(models.AbstractModel):
 
         return status_response(status) and content or False
 
+    def update_to_google(self, oe_event, google_event):
+        url = "/calendar/v3/calendars/%s/events/%s?fields=%s&access_token=%s" % (
+        self.get_calendar_id(), google_event['id'], 'id,updated', self.get_token())
+        headers = {'Content-type': 'application/json', 'Accept': 'text/plain'}
+        data = self.generate_data(oe_event)
+        data['sequence'] = google_event.get('sequence', 0)
+        data_json = json.dumps(data)
+
+        status, content, ask_time = self.env['google.service']._do_request(url, data_json, headers, type='PATCH')
+
+        update_date = datetime.strptime(content['updated'], "%Y-%m-%dT%H:%M:%S.%fz")
+        oe_event.write({'oe_update_date': update_date})
+
+        if self.env.context.get('curr_attendee'):
+            self.env['calendar.attendee'].browse(self.env.context['curr_attendee']).write(
+                {'oe_synchro_date': update_date})
+
     def update_an_event(self, event):
         data = self.generate_data(event)
         url = "/calendar/v3/calendars/%s/events/%s" % (self.get_calendar_id(), event.google_internal_event_id)
