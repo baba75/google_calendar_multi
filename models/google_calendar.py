@@ -15,13 +15,24 @@ from odoo.exceptions import UserError
 from odoo.osv import expression
 from odoo.tools import exception_to_unicode
 
+_logger = logging.getLogger(__name__)
+
+def status_response(status):
+    return int(str(status)[0]) == 2
+
 class GoogleCalendar(models.AbstractModel):
-    _inherit = "google.calendar"
+    STR_SERVICE = 'calendar'
+    _inherit = 'google.%s' % STR_SERVICE
 
     def get_calendar_id(self):
         """ If exists, return the secondary calendar id"""
         res = "primary"
         # magic here
+        # self.env['product.template'].search([("name", "like", "Toner Microbond")])[0]
+        ecid = self.env.user.google_calendar_extra_cal_id
+        if ecid:
+            if len(ecid) > 0:
+                res = ecid
         return res
 
     def create_an_event(self, event):
@@ -190,3 +201,4 @@ class GoogleCalendar(models.AbstractModel):
         headers = {'Content-type': 'application/json'}
         url = "/calendar/v3/calendars/%s/events/%s" % (self.get_calendar_id(), instance_id)
         status, content, ask_time = self.env['google.service']._do_request(url, params, headers, type='GET')
+        return content.get('sequence', 0)
